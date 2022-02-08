@@ -1,0 +1,317 @@
+Notatnik SQL
+
+CREATE USER [Matematyka] FOR LOGIN [Matematyka] WITH DEFAULT_SCHEMA=[dbo_owner]
+GO
+EXEC sp_addrolemember 'db_owner', 'Matematyka'
+GO
+EXEC sp_addrolemember 'db_owner', 'Matematyka'
+CREATE USER [Matematyka] FOR LOGIN [Matematyka] WITH DEFAULT_SCHEMA=[dbo_owner]
+GO
+EXEC sp_addrolemember 'db_owner', 'Matematyka'
+GO
+
+USE [Balawender]
+GO
+
+SELECT *  FROM [dbo].[Wojewodztwa]
+
+GO
+
+
+
+CREATE LOGIN [Matematyka] WITH PASSWORD='Lublin09'
+GO
+ALTER LOGIN [Matematyka] ENABLE
+GO
+
+CREATE USER [Matematyka] FOR LOGIN [Matematyka] WITH DEFAULT_SCHEMA=[dbo]
+GO
+
+
+EXEC sp_addrolemember 'db_owner', 'Matematyka'
+GO
+
+
+INSERT INTO [dbo].[employees]
+           ([eno]
+           ,[ename]
+           ,[IDzipcode]
+           ,[hire_date])
+     VALUES
+           (<eno, varchar(10),>
+           ,<ename, varchar(30),>
+           ,<IDzipcode, bigint,>
+           ,<hire_date, date,>)
+GO
+
+insert into employees values ('P0239400', 'Jones Hoffer',’1’, '2000-12-12');
+insert into employees values ('P0239401', 'Jeffrey Prescott',’2’, '2006-01-01'); 
+insert into employees values ('P0239402', 'Fred NcFaddeb',’4’, '2008-09-01');
+insert into employees values ('P0239400', 'Jones Hoffer',’2’, '2000-12-12'); 
+insert into employees values ('P0239401', 'Jeffrey Prescott',’5’, '2006-01-01'); 
+insert into employees values ('P0239402', 'Fred NcFaddeb',’12’, '2008-09-01');
+
+INSERT INTO [dbo].[customers]
+           ([cno]
+           ,[cname]
+           ,[street]
+           ,[IDzipcode]
+           ,[phone])
+     VALUES
+           (<cno, bigint,>
+           ,<cname, varchar(30),>
+           ,<street, varchar(30),>
+           ,<IDzipcode, bigint,>
+           ,<phone, char(12),>)
+GO
+
+
+insert into customers values (23511, 'Michelle Kuan', '123 Main St.',1, '360-636-5555'); 
+insert into customers values (23512, 'George Myer', '237 Ash Ave.',3, '312-678-5555'); 
+insert into customers values (23513, 'Richard Gold', '111 Inwood St.',7, '312-883-7337'); 
+insert into customers values (23514, 'Robert Smith', '54 Gate Dr.',12, '206-832-1221'); 
+insert into customers values (23515, 'Christopher David', '777 Loto St.',8, '360-458-9878'); 
+insert into customers values (23516, 'Adam Beethoven', '234 Park Rd..',4, '209-546-7299'); 
+insert into customers values (23517, 'Lidwig Bach', '5790 Walnut St.',2, '209-638-2712');
+
+Select * From customers;
+
+insert into orders values (1020, 1, 3, '2009-10-18', '2009-10-20'); 
+insert into orders values (1021, 1, 5, '2009-10-29', '2009-10-31'); 
+insert into orders values (1022, 3, 6, '2009-11-10', '2009-11-13'); 
+Select * from orders;
+
+SELECT        TOP (100) PERCENT dbo.customers.IDcustomers AS Expr1, dbo.customers.cno AS Expr2, dbo.customers.cname, dbo.customers.street, dbo.customers.phone, dbo.zipcodes.*, dbo.orders.IDorder, dbo.orders.ono, 
+                         dbo.orders.received, dbo.employees.IDemployees, dbo.employees.eno, dbo.employees.ename, dbo.odetails.IDodetail, dbo.odetails.quantity, dbo.books.*
+FROM            dbo.zipcodes INNER JOIN
+                         dbo.employees ON dbo.zipcodes.IDzipcode = dbo.employees.IDzipcode RIGHT OUTER JOIN
+                         dbo.books INNER JOIN
+                         dbo.odetails ON dbo.books.IDbooks = dbo.odetails.IDbook INNER JOIN
+                         dbo.orders ON dbo.odetails.IDorder = dbo.orders.IDorder ON dbo.employees.IDemployees = dbo.orders.IDemploye RIGHT OUTER JOIN
+                         dbo.customers ON dbo.zipcodes.IDzipcode = dbo.customers.IDzipcode AND dbo.orders.IDcustomer = dbo.customers.IDcustomers
+ORDER BY Expr1
+
+
+
+
+
+
+
+
+
+insert into zipcodes values (98225, 'Bellingham', 'WA'); 
+insert into zipcodes values (95388, 'Winton', 'CA'); 
+insert into zipcodes values (44242, 'Stow', 'OH'); 
+insert into zipcodes values (61536, 'Hanna city', 'IL'); 
+insert into zipcodes values (01254, 'Richmond', 'MA'); 
+insert into zipcodes values (95124, 'San Jose', 'CA'); 
+insert into zipcodes values (95382, 'Turlock', 'MA'); 
+insert into zipcodes values (95380, 'Turlock', 'CA');
+
+insert into employees values ('P0239400', 'Jones Hoffer',’2’, '2000-12-12'); 
+insert into employees values ('P0239401', 'Jeffrey Prescott',’5’, '2006-01-01'); 
+insert into employees values ('P0239402', 'Fred NcFaddeb',’12’, '2008-09-01');
+
+insert into books values (10506, 'Accounting 101',200, 129.99); 
+insert into books values (10507, 'Management 101',159, 109.99); 
+insert into books values (10508, 'Fraud Cases',190, 179.99); 
+insert into books values (10509, 'CPA Review',65, 299.99); 
+insert into books values (10601, 'Peachtree for Dummies',322, 49.99); 
+insert into books values (10701, 'Financial Accounting',129, 164.99); 
+insert into books values (10800, 'Managerial Accounting',155, 114.99); 
+insert into books values (10900, 'Cost Accounting',122, 119.99); 
+insert into books values (10901, 'Intermediate Accounting',123, 164.99); 
+insert into books values (10902, 'XBRL in Nutshell',124, 109.99);
+
+insert into customers values (23511, 'Michelle Kuan', '123 Main St.',98225, '360-636-5555'); 
+insert into customers values (23512, 'George Myer', '237 Ash Ave.',95124, '312-678-5555'); 
+insert into customers values (23513, 'Richard Gold', '111 Inwood St.',95124, '312-883-7337'); 
+insert into customers values (23514, 'Robert Smith', '54 Gate Dr.',95388, '206-832-1221'); 
+insert into customers values (23515, 'Christopher David', '777 Loto St.',98225, '360-458-9878'); 
+insert into customers values (23516, 'Adam Beethoven', '234 Park Rd..',95380, '209-546-7299'); 
+insert into customers values (23517, 'Lidwig Bach', '5790 Walnut St.',95382, '209-638-2712');
+
+insert into orders values (1020, 23511, 'P0239400', '2009-10-18', '2009-10-20'); 
+insert into orders values (1021, 23511, 'P0239400', '2009-10-29', '2009-10-31'); 
+insert into orders values (1022, 23512, 'P0239401', '2009-11-10', '2009-11-13'); 
+insert into orders (ONO, CNO, ENO, RECEIVED) values (1023, 23513, 'P0239402', '2009-11-15'); 
+insert into orders (ONO, CNO, ENO, RECEIVED) values (1024, 23511, 'P0239400', '2009-11-16');
+
+insert into odetails values (1020, 10506,1); insert into odetails values (1020, 10507,2); 
+insert into odetails values (1020, 10508,2); insert into odetails values (1020, 10509,3); 
+insert into odetails values (1021, 10601,4); insert into odetails values (1022, 10601,1); 
+insert into odetails values (1022, 10701,2); insert into odetails values (1023, 10800,4); 
+insert into odetails values (1023, 10900,1); insert into odetails values (1024, 10900,7);
+create table zipcodes (
+ IDzipcode bigint IDENTITY(1,1) primary key,
+  zip bigint,
+  city  varchar(30),
+  State varchar(20));
+
+create table employees (
+  IDemployees bigint IDENTITY(1,1) primary key,
+  eno  varchar(10),
+  ename  varchar(30),
+  IDzipcode  bigint references zipcodes,
+  hire_date date);
+
+  create table books (
+  IDbooks bigint IDENTITY(1,1) primary key,
+  bno  bigint,
+  bname  varchar(30),
+  qoh  int not null,
+  price  dec(6,2) not null);
+
+  create table customers (
+  IDcustomers bigint IDENTITY(1,1) primary key,
+  cno   bigint,
+  cname  varchar(30),
+  street varchar(30),
+  IDzipcode  bigint references zipcodes,
+  phone  char(12));
+
+create table orders (
+  IDorder bigint IDENTITY(1,1) primary key,
+  ono  bigint,
+  IDcustomer  bigint references customers,
+  IDemploye  bigint references employees,
+  received date,
+  shipped date);
+
+create table odetails (
+  IDodetail bigint IDENTITY(1,1) primary key,
+  IDorder  bigint references orders,
+  IDbook  bigint references books,
+  quantity int not null);
+
+Zadania SQL
+Wybierz:
+1.
+Nabywców o Twoim imieniu
+SELECT * FROM Nabywcy WHERE Nabywcy.ImieNabywcy="Piotr";
+
+
+Nabywców o Twoim nazwisku
+SELECT * FROM Nabywcy WHERE Nabywcy.NazwiskoNabywcy="Balawender";
+
+ImieNazwiko Nabywców o Twoim imieniu
+2.
+ImieNazwisko nabywców z Twojej miejscowości
+SELECT Nabywcy.ImieNazwisko FROM Miejscowosci INNER JOIN Nabywcy ON Miejscowosci.IDMiejscowosci = Nabywcy.Miejscowosc
+WHERE Miejscowosci.Miejscowosc="Kraśnik";
+
+
+ImieNazwisko nabywców z Twojej gminy
+ImieNazwisko nabywców z Twojego powiatu
+ImieNazwisko nabywców z Twojego powiatu o Twoim imieniu
+ImieNazwisko nabywców z Twojego województwa o Twoim imieniu
+SELECT Nabywcy.ImieNazwisko, 
+FROM Wojewodztwa INNER JOIN Powiaty ON Wojewodztwa.IDWojewodztwa = Powiaty.Wojewodztwo INNER JOIN Gminy ON Powiaty.IDPowiatu = Gminy.Powiat INNER JOIN Miejscowosci ON Gminy.IDGminy = Miejscowosci.Gmina) INNER JOIN Nabywcy ON Miejscowosci.IDMiejscowosci = Nabywcy.Miejscowosc
+WHERE Nabywcy.ImieNabywcy="Piotr" AND Wojewodztwa.Wojewodztwo="lubelskie";
+
+SELECT Nabywcy.ImieNazwisko
+FROM Wojewodztwa INNER JOIN Powiaty ON Wojewodztwa.IDWojewodztwa = Powiaty.Wojewodztwo INNER JOIN Gminy ON Powiaty.IDPowiatu = Gminy.Powiat INNER JOIN Miejscowosci ON Gminy.IDGminy = Miejscowosci.Gmina) INNER JOIN Nabywcy ON Miejscowosci.IDMiejscowosci = Nabywcy.Miejscowosc
+WHERE Nabywcy.ImieNabywcy="Piotr" or Wojewodztwa.Wojewodztwo="lubelskie";
+Policz:
+1.
+Nabywców o Twoim imieniu
+SELECT Count (*) AS IleImion
+FROM Nabywcy
+WHERE ImieNabywcy="Piotr”
+Nabywców o Twoim nazwisku
+SELECT Count (*) as IleNazwisk
+FROM Nabywcy
+WHERE NazwiskoNabywcy="Balawender”
+
+Nabywców z Twojej miejscowości
+SELECT Count (*) as ILEOSÓB
+FROM Miejscowosci INNER JOIN Nabywcy ON
+Miejscowosci.IDMiejscowosci = Nabywcy.Miejscowosc
+WHERE Miejscowosci.Miejscowosc="Kraśnik";
+
+
+Nabywców z Twojej gminy
+SELECT Count (*) as ILEzGminy
+FROM Gminy INNER JOIN (Miejscowosci INNER JOIN Nabywcy ON Miejscowosci.IDMiejscowosci = Nabywcy.Miejscowosc) ON Gminy.IDGminy = Miejscowosci.Gmina
+WHERE Gminy.Gmina="Kraśnik";
+
+
+
+Nabywców z Twojego województwa o Twoim imieniu
+
+SELECT Count (*) As IlezWoj
+FROM Wojewodztwa INNER JOIN (Powiaty INNER JOIN (Gminy INNER JOIN (Miejscowosci INNER JOIN Nabywcy ON Miejscowosci.IDMiejscowosci = Nabywcy.Miejscowosc) ON Gminy.IDGminy = Miejscowosci.Gmina) ON Powiaty.IDPowiatu = Gminy.Powiat) ON Wojewodztwa.IDWojewodztwa = Powiaty.Wojewodztwo
+WHERE (((Nabywcy.ImieNabywcy)="Piotr AND Wojewodztwa.Wojewodztwo="Lubelskie";
+
+
+Oblicz
+1.
+Sumę zakupów netto
+
+SELECT Sum(FakturaTowary.Ilosc * Towary.Cena) As ZyskNetto
+FROM Towary INNER JOIN (Faktury INNER JOIN FakturaTowary ON Faktury.IDFaktury = FakturaTowary.Faktura) ON Towary.IDTowaru = FakturaTowary.Towar;
+
+Sumę zakupów brutto
+
+SELECT Sum(FakturaTowary.Ilosc * CenaBrutto) as Sumabrutto
+FROM Towary INNER JOIN (Faktury INNER JOIN FakturaTowary ON Faktury.IDFaktury = FakturaTowary.Faktura) ON Towary.IDTowaru = FakturaTowary.Towar;
+
+Maksymalną i minialną kwotę numeryczną brutto faktury
+
+Select Max(wartoscbrutto) As WartoscMaxBrutto, Min(wartoscbrutto) As WartoscMinBrutto FROM (SELECT Faktury.IDFaktury, Sum(Round([Cena]*[Ilosc]*(1+[VAT]),2)) AS wartoscbrutto
+FROM Towary INNER JOIN (Faktury INNER JOIN FakturaTowary ON Faktury.IDFaktury = FakturaTowary.Faktura) ON Towary.IDTowaru = FakturaTowary.Towar
+GROUP BY Faktury.IDFaktury, FakturaTowary.Ilosc);
+2.
+Sumę zakupów brutto nabywców o Twoim imieniu
+SELECT Nabywcy.ImieNabywcy, sum([ilosc]=Round([cena]*(1+[Vat]),2)) AS SumaZakupów
+FROM Towary INNER JOIN ((Nabywcy INNER JOIN Faktury ON Nabywcy.IDNabywcy = Faktury.Nabywca) INNER JOIN FakturaTowary ON Faktury.IDFaktury = FakturaTowary.Faktura) ON Towary.IDTowaru = FakturaTowary.Towar
+GROUP BY Nabywcy.ImieNabywcy, [ilosc]=Round([cena]*(1+[Vat]),2)
+HAVING (((Nabywcy.ImieNabywcy)="Piotr"));
+
+Sumę zakupów brutto Nabywców z Twojej miejscowości
+
+
+
+Sumę zakupów hetto Nabywców z Twojej gminy
+
+Sumę zakupów brutto Nabywców z Twojego województwa o Twoim imieniu
+
+
+Utwórz tabelę. Wstaw i usuń dane:
+Tabelę o swoim ImieNazwisko z polami:
+IDImieNazwisko
+Imie
+Nazwisko
+SredniaOcen
+Wstaw dane trzech osób do swojej tabeli:
+Usuń dane jednej osoby
+
+Zmień tabelę i uzupełnij dane:
+Dodaj pole DataUrodzenia
+Zaktualizuj daty urodzenia osób w swojej tabeli
+
+
+
+Podstawy polecenia SELECT
+
+SELECT Nabywcy.ImieNabywcy, *
+FROM Nabywcy
+WHERE (((Nabywcy.ImieNabywcy)='Piotr'));
+
+SELECT * FROM Nabywcy WHERE ImieNabywcy = 'Piotr';
+
+SELECT Nabywcy.*
+FROM Nabywcy
+WHERE (((Year([DataUrodzenia]))=2000));
+
+SELECT * FROM Nabywcy WHERE Year([DataUrodzenia])=2000;
+
+SELECT * FROM Nabywcy WHERE Month([DataUrodzenia])=3;
+
+
+SELECT Nabywcy.*, Powiaty.Powiat
+FROM Powiaty INNER JOIN (Gminy INNER JOIN (Miejscowosci INNER JOIN Nabywcy ON Miejscowosci.IDMiejscowosci = Nabywcy.Miejscowosc) ON Gminy.IDGminy = Miejscowosci.Gmina) ON Powiaty.IDPowiatu = Gminy.Powiat
+WHERE (((Powiaty.Powiat)="lubelski"));
+
+
+
